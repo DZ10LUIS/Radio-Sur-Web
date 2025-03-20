@@ -248,4 +248,58 @@
       line-height: 32px;
     }
   }
-  
+ 
+  .carousel {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 200px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.anuncio-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.anuncio-content p {
+    font-size: 1.2rem;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+.carousel-inner {
+    display: flex;
+    transition: transform 0.8s ease-in-out; /* Transición más suave */
+}

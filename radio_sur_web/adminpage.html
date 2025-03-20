@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador de Anuncios</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Gestión de Anuncios Radio Sur</h1>
+       
+        <!-- Formulario para Agregar o Modificar -->
+        <div class="form-container">
+            <h2>Agregar Anuncios</h2>
+            <form id="announcement-form">
+                <label for="key">Clave del Anuncio:</label>
+                <input type="text" id="key" placeholder="Ejemplo: Bienvenido" required>
+                <label for="content">Contenido del Anuncio:</label>
+                <input type="text" id="content" placeholder="Ejemplo: ¡Bienvenido a Radio Sur!">
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+  <div class="admin-container">
+        <!-- Formulario para Editar -->
+        <div class="form-container">
+            <h2>Modificar Anuncios</h2>
+            <form id="edit-form">
+                <label for="edit-key">Clave del Anuncio:</label>
+                <input type="text" id="edit-key" placeholder="Ejemplo: Bienvenido" disabled>
+                <label for="edit-content">Nuevo Contenido del Anuncio:</label>
+                <input type="text" id="edit-content" placeholder="Ejemplo: ¡Contenido actualizado!">
+                <button type="submit">Guardar Cambios</button>
+            </form>
+        </div>
+
+        
+       
+        <!-- Lista de Anuncios -->
+        <div class="list-container">
+            <h2>Lista de Anuncios existentes</h2>
+            <ul id="announcements-list">
+                <!-- Los anuncios dinámicos se cargarán aquí -->
+            </ul>
+        </div>
+        </div>
+<div class="admin-container">
+    <div class="form-container">
+        <h2>Modificar Número de Contacto</h2>
+        <form id="whatsapp-form">
+            <label for="whatsapp-number">Nuevo Número de WhatsApp:</label>
+            <input type="text" id="whatsapp-number" placeholder="Ejemplo: 5216751087260" required>
+            <button type="submit">Actualizar Número</button>
+        </form>
+    </div>
+</div>
+    <script src="admin.js"></script>
+</body>
+</html>

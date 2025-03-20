@@ -31,68 +31,27 @@
             </div>
             <img class="vector-200" src="multimedia/vecteezy_ai-generated-sound-mixer-at-music-studio_36789989.jpg" alt="Imagen de un mezclador de sonido en un estudio musical" loading="lazy" />
         </div>
-
         <div class="products">
             <div class="container2">
                 <div class="title3">Eventos</div>
             </div>
-            <div class="list">
-                <div class="row">
-                    <!-- Primera tarjeta -->
-                    <div class="card">
-                        <div class="image-container">
-                            <div class="image" alt="Evento Show Musical">
-                                <div class="title4">Show Musical</div>
-                                <div class="tag">
-                                    <div class="text">En Vivo</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-content">
-                            <div class="title5">MusicMania</div>
-                            <div class="subtitle">Martes 8PM</div>
-                        </div>
-                    </div>
-                    <!-- Segunda tarjeta -->
-                    <div class="card">
-                        <div class="image-container">
-                            <div class="image" alt="Evento Talk Show">
-                                <div class="title4">Talk Show</div>
-                                <div class="tag">
-                                    <div class="text">On Air</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-content">
-                            <div class="title5">TalkTime</div>
-                            <div class="subtitle">Miércoles 5PM</div>
-                        </div>
-                    </div>
-                    <!-- Tercera tarjeta -->
-                    <div class="card">
-                        <div class="image-container">
-                            <div class="image" alt="Evento News Show">
-                                <div class="title4">News Show</div>
-                                <div class="tag">
-                                    <div class="text">Último</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-content">
-                            <div class="title5">NewsWatch</div>
-                            <div class="subtitle">Diario 12PM</div>
-                        </div>
-                    </div>
+            <!-- Carrusel de Anuncios -->
+            <div class="carousel">
+                <div class="carousel-inner" id="carousel-data">
+                    <!-- Los anuncios dinámicos se cargarán aquí -->
                 </div>
+                <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="next" onclick="moveSlide(1)">&#10095;</button>
             </div>
             <img class="vector-2002" src="multimedia/vecteezy_guitarist-on-stage-for-background-soft-and-blur-concept_6966131.jpg" alt="Guitarrista en el escenario durante un concierto" loading="lazy" />
         </div>
-
+        
+        
         <div class="contents">
             <div class="container2">
                 <div class="title3">Noticias</div>
                 <!-- Iframe para mostrar la página de Facebook -->
-                <iframe src="https://www.facebook.com/profile.php?id=61559943816593"
+                <iframe src="https://www.facebook.com/"
                         width="100%"
                         height="500px"
                         style="border: none;"
@@ -101,7 +60,7 @@
                 </iframe>
             </div>
         </div>
-        
+       
             <div class="list2">
                 <div class="row2">
                     <div class="article">
@@ -195,7 +154,71 @@
             } else {
                 console.error('No se encontró el número de WhatsApp en la base de datos.');
             }
+        })
+        // Referencia a los anuncios en la base de datos
+const anunciosRef = database.ref('Anuncios');
+
+// Escucha cambios en los datos de anuncios
+anunciosRef.on('value', (snapshot) => {
+    const anuncios = snapshot.val();
+    const carouselInner = document.getElementById('carousel-data');
+    carouselInner.innerHTML = ''; // Limpia cualquier dato existente
+
+    if (anuncios) {
+        Object.keys(anuncios).forEach((key) => {
+            const anuncio = anuncios[key];
+            if (anuncio) { // Evita claves vacías
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                slide.innerHTML = `
+                    <div class="anuncio-content">
+                        <h3>${key}</h3>
+                        <p>${anuncio}</p>
+                    </div>
+                `;
+                carouselInner.appendChild(slide);
+            }
         });
+    } else {
+        console.error('No se encontraron anuncios en la base de datos.');
+    }
+});
+
+// Funciones para mover las diapositivas
+let currentIndex = 0;
+
+function moveSlide(direction) {
+    const carouselInner = document.getElementById('carousel-data');
+    const slides = carouselInner.children;
+    const totalSlides = slides.length;
+
+    if (totalSlides > 0) {
+        currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+        const offset = -currentIndex * 100;
+        carouselInner.style.transform = `translateX(${offset}%)`;
+    }
+}
+// Variable de control para el intervalo
+let autoSlideInterval;
+
+// Función para iniciar el carrusel automático
+function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+        moveSlide(1); // Avanza a la siguiente diapositiva automáticamente
+    }, 3000); // Cambia cada 3 segundos (puedes ajustar el tiempo)
+}
+
+// Función para detener el carrusel automático (opcional si necesitas detenerlo)
+function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+}
+
+// Inicia el carrusel automático cuando la página carga
+window.onload = () => {
+    startAutoSlide();
+};
+
+
     </script>
 </body>
 </body>
