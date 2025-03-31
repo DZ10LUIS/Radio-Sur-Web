@@ -19,9 +19,20 @@
         <div class="top-bar">
             <img class="radiosur-dgo-3-d-1" src="multimedia/RADIOSUR_DGO-3d.png" alt="Logo de Radio Sur Durango" loading="lazy" />
             <div class="title">Radio Sur Durango</div>
+
+            <div class="custom-audio-player">
+                <img id="play-button" src="multimedia/play_button.png" alt="Play" class="icon_rapr">
+                <input type="range" id="seek-bar" value="0">
+            </div>
+            <audio id="audio">
+                <source src="https://stream.zeno.fm/2lfvv1dzw3ztv" type="audio/mpeg">
+                Tu navegador no soporta el elemento de audio.
+            </audio>
+            
             <div class="navigation">
                 <div class="tab"><a href="page.html" aria-label="Ir a la página de inicio">Inicio</a></div>
             </div>
+            
         </div>
 
         <div class="section">
@@ -29,7 +40,53 @@
                 <div class="title2">Bienvenidos A Radio Sur</div>
                 <div class="description">La Mejor Música al alcance de tus Manos</div>
             </div>
-            <img class="vector-200" src="multimedia/vecteezy_ai-generated-sound-mixer-at-music-studio_36789989.jpg" alt="Imagen de un mezclador de sonido en un estudio musical" loading="lazy" />
+            <img class="vector-200" src="multimedia/vecteezy_ai-generated-sound-mixer-at-music-studio_36789989.jpg" 
+            alt="Imagen de un mezclador de sonido en un estudio musical" 
+            loading="lazy" />
+            
+            <script>
+                const audio = document.getElementById('audio');
+const playButton = document.getElementById('play-button');
+const seekBar = document.getElementById('seek-bar');
+const currentTimeDisplay = document.getElementById('current-time');
+const durationDisplay = document.getElementById('duration');
+
+// Cambia las imágenes al cargar el estado de reproducción
+playButton.addEventListener('click', () => {
+    if (audio.paused) {
+        audio.play();
+        playButton.src = 'multimedia/pausse_button.png'; // Cambia a ícono de pausa
+    } else {
+        audio.pause();
+        playButton.src = 'multimedia/play_button.png'; // Cambia a ícono de play
+    }
+});
+
+// Actualiza la barra de progreso y el tiempo
+audio.addEventListener('timeupdate', () => {
+    seekBar.value = audio.currentTime;
+    currentTimeDisplay.textContent = formatTime(audio.currentTime);
+});
+
+// Establece la duración total cuando se carga el archivo
+audio.addEventListener('loadedmetadata', () => {
+    durationDisplay.textContent = formatTime(audio.duration);
+    seekBar.max = audio.duration;
+});
+
+// Control de progreso manual
+seekBar.addEventListener('input', () => {
+    audio.currentTime = seekBar.value;
+});
+
+// Función para formatear el tiempo
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+}
+
+            </script>
         </div>
         <div class="products">
             <div class="container2">
@@ -53,7 +110,7 @@
                 <!-- Iframe para mostrar la página de Facebook -->
                 <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61559943816593&tabs=timeline&width=1000&height=1000&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=true&appId=570088616079871" 
                 width="500" 
-                height="5000" 
+                height="1000" 
                 style="border:none;overflow:hidden" 
                 scrolling="yes" 
                 frameborder="0" 
@@ -86,18 +143,16 @@
                             <div class="icon"><img src="multimedia/facebook_2504903.png" alt="faceboook"></div>
                         </div>
                         <div class="frame-4273189062">
-                            <div class="title6"><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></div>
+                            <div class="title6"><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"></a></div>
                         </div>
                     </div>
                     <!-- Ítem WhatsApp -->
                    
                     <div class="item">
-                        
                         <div class="frame">
                             <div class="icon"><a href="https://wa.me/" target="_blank" rel="noopener noreferrer"><img src="multimedia/whatsapp_2504957.png" alt="whatssapp"></div>
                         </div>
                         <div class="frame-4273189062">
-                            <div class="title6">WhatsApp</a></div>
                         </div>
                     
                     </div>
@@ -105,10 +160,9 @@
                     <!-- Ítem Aplicación -->
                     <div class="item">
                         <div class="frame">
-                            <div class="icon">:)))</div>
+                            <div class="icon_app"><a href=""><img src="multimedia/RADIOSUR_DGO-3d.png" alt="Download app" width="120%"></a></div>
                         </div>
                         <div class="frame-4273189062">
-                            <div class="title6"><a href="https://www.radioemisora.com" target="_blank" rel="noopener noreferrer">Descarga nuestra App</a></div>
                         </div>
                     </div>
                 </div>

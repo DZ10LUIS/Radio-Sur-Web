@@ -34,6 +34,12 @@
 .vector-2004 {
   max-width: 1000px;
 }
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column; /* Cambia las filas a columnas en móviles */
+        gap: 20px;
+    }
+}
 
   
   .page {
@@ -109,7 +115,13 @@
     gap: 24px;
     align-items: center;
   }
-  
+  .container2 {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+}
+
   .title2 {
     color: var(--secondary-text-color);
     font-family: "Roboto-Bold", sans-serif;
@@ -163,13 +175,13 @@
   }
 
   
-  .row, .row2 {
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-    align-items: center;
-    width: 100%;
-  }
+.row2 , .row {
+        display: flex;
+        justify-content: center; /* Centra horizontalmente */
+        align-items: center;    /* Centra verticalmente */
+        flex-wrap: wrap;        /* Permite que los elementos se ajusten si hay espacio limitado */
+    }
+    
   
   .card, .article {
     border-radius: 6px;
@@ -302,4 +314,60 @@
 .carousel-inner {
     display: flex;
     transition: transform 0.8s ease-in-out; /* Transición más suave */
+}
+
+
+.custom-audio-player {
+    width: 250px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background-color: #8c0303;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #8c0303;
+}
+
+#seek-bar {
+    flex: 1;
+    margin: 0 10px;
+}
+
+span {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+.icon_rapr {
+    width:50px; 
+    height: 50px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px; /* Ajusta el ancho deseado */
+    height: 120px; /* Ajusta la altura deseada */
+    margin: auto; /* Centra dentro del padre */
+}
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
